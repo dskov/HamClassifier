@@ -108,7 +108,7 @@ validateloader  = torch.utils.data.DataLoader(dataset=custom_dset_from_images,
 # Model
 print('==> Building model..')
 #
-net = VGG('VGG19')
+net = VGG('VGG13')
 #net = DSK2(1)
 #net = ResNet50()
 # net = PreActResNet18()
@@ -146,7 +146,7 @@ def train(epoch):
     train_loss = 0
     correct = 0
     total = 0
-    print(len(trainloader))
+    #print(len(trainloader))
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         inputs, targets = inputs.to(device), targets.to(device)
         optimizer.zero_grad()
