@@ -20,7 +20,7 @@ import os
 import argparse
 
 from models import *
-from utils import progress_bar
+#from utils import progress_bar
 
 
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
@@ -87,13 +87,13 @@ custom_dset_from_images =  \
     CustomDatasetFromImages('data/train.csv')
 
 trainloader = torch.utils.data.DataLoader(dataset=custom_dset_from_images,
-                                                batch_size=128,
+                                                batch_size=12,
                                                 shuffle=False)
 custom_dset_from_images =  \
     CustomDatasetFromImages('data/test.csv')
 
 testloader  = torch.utils.data.DataLoader(dataset=custom_dset_from_images,
-                                                batch_size=250,
+                                                batch_size=2,
                                                 shuffle=False)
 
 custom_dset_from_images =  \
@@ -223,7 +223,7 @@ def validate():
             outputs = net(inputs)
 	    # dsk> again
             diff =  targets.tolist()[0] - outputs.tolist()[0][0]
-            diff = diff / targets.tolist()[0] * 100
+            #diff = diff / targets.tolist()[0] * 100
               
     return diff
 
@@ -246,10 +246,12 @@ validate()
 
 # Quentin training style !
 nb_run = 0
-for nb_run in range(0,1000):
+#make it simple
+nep = 1
+for nb_run in range(0,nep):
     print('Run '+str(nb_run))
     epoch = 0
-    #net = VGG('DSK19')
+    net = VGG('VGG19')
     net = net.to(device) 
     if device == 'cuda':
     	net = torch.nn.DataParallel(net)
